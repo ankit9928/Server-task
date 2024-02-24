@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // Import the database module
+const db = require('../db'); 
 
-// Define your routes here
 router.post('/records', async (req, res) => {
   try {
-    const { column1, column2 } = req.body;
-    const newRecord = { column1, column2 };
-    const createdRecord = await db.insertRecord(newRecord);
+    const { first_name, last_name } = req.body;
+    const newRecord = { first_name, last_name };
+    const createdRecord = await db.insertRecord('actors', newRecord);
     res.status(201).json(createdRecord);
   } catch (error) {
     console.error(error);
@@ -15,9 +14,12 @@ router.post('/records', async (req, res) => {
   }
 });
 
-router.get('/records', async (req, res) => {
+router.get('/records/:tableName', async (req, res) => {
+
+  const { tableName } = req.params;
+
   try {
-    const records = await db.getAllRecords();
+    const records = await db.getAllRecords(tableName);
     res.json(records);
   } catch (error) {
     console.error(error);
@@ -29,7 +31,7 @@ router.put('/records/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const updatedData = req.body;
-    const updatedRecord = await db.updateRecord(id, updatedData);
+    const updatedRecord = await db.updateRecord('actors', id, updatedData);
     res.json(updatedRecord);
   } catch (error) {
     console.error(error);
@@ -37,10 +39,11 @@ router.put('/records/:id', async (req, res) => {
   }
 });
 
+
 router.delete('/records/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    await db.deleteRecord(id);
+    await db.deleteRecord('actors',id);
     res.json({ message: 'Record deleted successfully' });
   } catch (error) {
     console.error(error);

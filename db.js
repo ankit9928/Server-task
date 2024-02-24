@@ -1,62 +1,63 @@
-// db.js
-
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'chinook',
-  // password: 'password',
+  user: "postgres",
+  host: "localhost",
+  database: "chinook",
+  password: "rootuser",
   port: 5432,
 });
 
 const db = {
-  // Function to insert a new record into the database
-  async insertRecord(newRecord) {
+  async insertRecord(tableName, newRecord) {
     const client = await pool.connect();
     try {
-      // Execute SQL insert statement
-      const result = await client.query('INSERT INTO your_table_name (column1, column2) VALUES ($1, $2) RETURNING *', [newRecord.column1, newRecord.column2]);
-      return result.rows[0]; // Return the inserted record
+      const result = await client.query(
+        `INSERT INTO ${tableName} (first_name, last_name) VALUES ($1, $2) RETURNING *`,
+        [newRecord.first_name, newRecord.last_name]
+      );
+      return result.rows[0];
     } finally {
-      client.release(); // Release the client back to the pool
+      client.release();
     }
   },
 
-  // Function to retrieve all records from the database
-  async getAllRecords() {
+  async getAllRecords(tableName) {
     const client = await pool.connect();
     try {
-      // Execute SQL select statement
-      const result = await client.query('SELECT * FROM your_table_name');
-      return result.rows; // Return the list of records
+      const result = await client.query(`SELECT * FROM ${tableName}`);
+      return result.rows;
     } finally {
-      client.release(); // Release the client back to the pool
+      client.release();
     }
   },
 
-  // Function to update an existing record in the database
-  async updateRecord(id, updatedData) {
+  async updateRecord(tableName, id, updatedData) {
     const client = await pool.connect();
     try {
-      // Execute SQL update statement
-      const result = await client.query('UPDATE your_table_name SET column1 = $1, column2 = $2 WHERE id = $3 RETURNING *', [updatedData.column1, updatedData.column2, id]);
-      return result.rows[0]; // Return the updated record
+      const updateQuery = `UPDATE ${tableName} SET first_name = $1, last_name = $2, last_update = $3 WHERE id = $4 RETURNING *`;
+
+      const result = await client.query(updateQuery, [
+        updatedData.first_name,
+        updatedData.last_name,
+        updatedData.last_update,
+        id,
+      ]);
+
+      return result.rows[0];
     } finally {
-      client.release(); // Release the client back to the pool
+      client.release();
     }
   },
 
-  // Function to delete a record from the database
-  async deleteRecord(id) {
+  async deleteRecord(tableName, id) {
     const client = await pool.connect();
     try {
-      // Execute SQL delete statement
-      await client.query('DELETE FROM your_table_name WHERE id = $1', [id]);
+      await client.query(`DELETE FROM ${tableName} WHERE id = $1`, [id]);
     } finally {
-      client.release(); // Release the client back to the pool
+      client.release();
     }
-  }
+  },
 };
 
 module.exports = db;
