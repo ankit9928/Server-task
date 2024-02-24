@@ -1,0 +1,4 @@
+GET /api/records/actors 200 19260 - 67.043 ms Sat, 24 Feb 2024 17:26:35 GMT
+DELETE /api/records/199 200 41 - 46.808 ms Sat, 24 Feb 2024 17:27:31 GMT
+GET /api/records/199 500 26 - 8.903 ms Sat, 24 Feb 2024 17:27:36 GMT
+GET /api/records/actors 200 19165 - 8.952 ms Sat, 24 Feb 2024 17:27:43 GMT
