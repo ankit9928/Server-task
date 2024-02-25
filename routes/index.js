@@ -2,6 +2,17 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db'); 
 
+router.get('/', async (req, res) => {
+
+  try {
+    res.status(200).json({ message: "CRUD API'S " });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 router.post('/records', async (req, res) => {
   try {
     const { first_name, last_name } = req.body;
