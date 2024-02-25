@@ -1,13 +1,11 @@
-### Note
 
-# CRUD API with Node.js
+## CRUD API with Node.js
 - This repository contains a simple CRUD (Create, Read, Update, Delete) API implemented using Node.js. 
 - The API interacts with a PostgreSQL database to perform CRUD operations.
 
 
-Absolutely! Here's a readme.md file template for your Node.js project using Node, Postgres, Postman for testing, and VS Code for development:
 
-# <CRUD API>
+## <CRUD API>
 
 This repository contains the source code for the <CRUD API> project, written in Node.js and using PostgreSQL for data storage.
 
@@ -22,33 +20,126 @@ Basic logging of API operations for monitoring and debugging.
 Node.js: v18.16.1 and above 
 PostgreSQL: 16 and above 
 Postman
+Git
+GITHUB CI/CD
+Postman
 VS Code 
 
-## Getting Started
 
-1. Prerequisites:
+### Prerequisites:
 
 Node.js  
 PostgreSQL  
 Postman  
 VS Code  
-2. Installation:
+Git  
+GITHUB 
 
-Clone this repository: git clone https://github.com/ankit9928/Server-task.git
-Install dependencies: npm install or yarn install
-3. Configuration:
+### Installation:
+
+### Pull the code
+   
+```bash
+git clone https://github.com/ankit9928/Server-task.git
+cd Server-task
+npm install or yarn install
+```
+
+### Environment variables
 
 Create a .env file (refer to .env.example for reference) and configure it with your database credentials, API keys, etc.
 Configure Postman collections (optional) to test API endpoints.
-4. Development:
 
-Open the project in VS Code.
-Run the development server: npm start or yarn start
-Test your application using Postman or other testing tools.
-5. Testing:
+```bash
+PORT=3000
+POSTGRES_URL="YOUR_POSTGRES_DB_URL"
+```
+
+### Open the project in VS Code.
+
+Run the development server:
+
+```bash
+npm start app.js
+```
+
+<div align="center">
+  <img src="/assets/start.png" />
+</div>
+
+
+### Endpoints:
 
 Postman collections are provided for testing API endpoints (optional).
-You can also write your own tests using testing frameworks like Jest or Mocha.
+
+```bash
+
+GET /api/records          Retrieve all records from the database.
+POST /api/records         Create a new record in the database.
+PUT /api/records/:id      Update an existing record in the database.
+DELETE /api/records/:id   Delete a record from the database.
+
+```
+
+### Test your application using Postman or other testing tools.
+
+<div align="center">
+  <img src="/assets/get.png" />
+</div>
+
+<div align="center">
+  <img src="/assets/put.png" />
+</div>
+
+<div align="center">
+  <img src="/assets/delete.png" />
+</div>
+
+
+### Logging
+
+The API includes basic logging of API operations. Logs can be found in the logs directory. 
+
+
+### CI/CD
+
+
+<div align="center">
+  <img src="/assets/CI/CD.png" />
+</div>
+
+## EC2 instance for Hosting BACKEND 
+
+Commands for SSH into an EC2 instance, installing Node.js, Git, PM2, and cloning a Git repository followed by starting the application with PM2:
+
+```bash
+ssh -i your-key.pem ec2-user@your-ec2-public-ip
+
+sudo yum update -y
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.bashrc
+nvm install node
+
+sudo yum install git -y
+
+npm install pm2 -g
+
+git clone https://github.com/ankit9928/Server-task.git
+cd Server-task
+
+npm install
+
+pm2 start app.js
+```
+
+<div align="center">
+  <img src="/assets/EC2.png" />
+</div>
+
+<div align="center">
+  <img src="/assets/pm2.png" />
+</div>
+
 ## Contributing
 
 If you want to contribute to this project, please refer to the CONTRIBUTING.md file for guidelines and instructions.
