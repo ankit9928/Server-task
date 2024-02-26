@@ -12,8 +12,7 @@ This repository contains the source code for the <CRUD API> project, written in 
 ## Features
 
 Create, Read, Update, and Delete records in the database.
-Secure API endpoints with appropriate access controls.
-Basic logging of API operations for monitoring and debugging.
+API endpoints. Basic logging of API operations for monitoring and debugging.
 
 ## Technologies Used
 
@@ -21,8 +20,7 @@ Node.js: v18.16.1 and above
 PostgreSQL: 16 and above 
 Postman
 Git
-GITHUB CI/CD
-Postman
+GITHUB Actions CI/CD
 VS Code 
 
 
@@ -54,6 +52,16 @@ Configure Postman collections (optional) to test API endpoints.
 PORT=3000
 POSTGRES_URL="YOUR_POSTGRES_DB_URL"
 ```
+
+For testing Purposes use the Chinook Dataset 
+
+```bash
+https://gist.github.com/shahidhk/351f7201c9cc35be5fd9f40e48113637/raw/0692054166afb79c2c681b680e6c52dbdf65f95a/chinook_postgres.sql
+```
+<div align="center">
+  <img src="/assets/DB.png" />
+</div>
+
 
 ### Open the project in VS Code.
 
@@ -100,6 +108,11 @@ DELETE /api/records/:id   Delete a record from the database.
 
 The API includes basic logging of API operations. Logs can be found in the logs directory. 
 
+```bash
+<div align="center">
+  <img src="/assets/logging.png" />
+</div>
+```
 
 ### CI/CD
 
@@ -142,17 +155,12 @@ pm2 start app.js
 
 ## Contributing
 
-If you want to contribute to this project, please refer to the CONTRIBUTING.md file for guidelines and instructions.
+If you want to contribute to this project, please refer to the guidelines and instructions.
 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE.md file for details.
 
-## Additional Notes:
 
-Replace <CRUD API> and other placeholders with your project's specific information.
-Add documentation specific to your project, such as API endpoints, usage examples, and deployment instructions.
-Consider including screenshots or GIFs to showcase your project's functionality.
-Keep the readme updated with any changes or new features.
-I hope this template helps you create a comprehensive and informative readme.md file for your Node.js project!
+
 
