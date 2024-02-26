@@ -108,17 +108,14 @@ DELETE /api/records/:id   Delete a record from the database.
 
 The API includes basic logging of API operations. Logs can be found in the logs directory. 
 
-```bash
 <div align="center">
   <img src="/assets/logging.png" />
 </div>
-```
 
 ### CI/CD
 
-
 <div align="center">
-  <img src="/assets/CI/CD.png" />
+  <img src="/assets/CI:CD.png" />
 </div>
 
 ## EC2 instance for Hosting BACKEND 
