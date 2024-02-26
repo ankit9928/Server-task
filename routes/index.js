@@ -40,9 +40,24 @@ router.get('/records/:tableName', async (req, res) => {
 
 router.put('/records/:id', async (req, res) => {
   try {
+    // const { id } = req.params;
+    // const updatedData = req.body;
+    // const updatedRecord = await db.updateRecord('actors', id, updatedData);
+
     const { id } = req.params;
-    const updatedData = req.body;
-    const updatedRecord = await db.updateRecord('actors', id, updatedData);
+    const { first_name, last_name } = req.body;
+
+    // Get the current timestamp without time zone
+    const last_update = new Date().toISOString();
+
+    const updatedRecord = await db.updateRecord('actors', id, {
+      first_name,
+      last_name,
+      last_update,
+    });
+
+
+
     res.json(updatedRecord);
   } catch (error) {
     console.error(error);
